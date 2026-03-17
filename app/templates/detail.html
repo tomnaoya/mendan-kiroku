@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}{{ staff.name }} - 面談記録システム{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+{# Breadcrumb #}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/staff" class="text-decoration-none">スタッフ一覧</a></li>
+    <li class="breadcrumb-item active">{{ staff.name }}</li>
+  </ol>
+</nav>
+
+{# Staff header card #}
+<div class="card mb-4">
+  <div class="card-body p-4">
+    <div class="d-flex align-items-center gap-4 flex-wrap">
+      <div>
+        <h3 class="fw-bold mb-1">{{ staff.name }}</h3>
+        <span class="dept-badge fs-6">{{ staff.department }}</span>
+      </div>
+      {% if survey_records %}
+      {% set latest = survey_records[-1] %}
+      <div class="ms-auto d-flex gap-3 flex-wrap">
+        <div class="text-center">
+          <div class="text-muted small mb-1">仕事満足度</div>
+          <span class="badge-score {% if latest.score_work <= 2 %}score-{{ latest.score_work }}{% elif latest.score_work == 3 %}score-3{% else %}score-{{ latest.score_work }}{% endif %}" style="width:48px;height:48px;font-size:1.1rem;">{{ latest.score_work or '―' }}</span>
+        </div>
+        <div class="text-center">
+          <div class="text-muted small mb-1">人間関係</div>
+          <span class="badge-score {% if latest.score_human <= 2 %}score-{{ latest.score_human }}{% elif latest.score_human == 3 %}score-3{% else %}score-{{ latest.score_human }}{% endif %}" style="width:48px;height:48px;font-size:1.1rem;">{{ latest.score_human or '―' }}</span>
+        </div>
+        <div class="text-center">
+          <div class="text-muted small mb-1">健康</div>
+          <span class="badge-score {% if latest.score_health <= 2 %}score-{{ latest.score_health }}{% elif latest.score_health == 3 %}score-3{% else %}score-{{ latest.score_health }}{% endif %}" style="width:48px;height:48px;font-size:1.1rem;">{{ latest.score_health or '―' }}</span>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  {# Left: Chart #}
+  <div class="col-lg-5">
+    <div class="card h-100">
+      <div class="card-header bg-white py-3 px-4 fw-semibold border-0">
+        <i class="bi bi-graph-up me-2 text-primary"></i>スコア推移
+      </div>
+      <div class="card-body p-4">
+        {% if survey_records %}
+        <canvas id="scoreChart" height="220"></canvas>
+        {% else %}
+        <div class="text-center text-muted py-5">
+          <i class="bi bi-bar-chart" style="font-size:2rem;"></i>
+          <p class="mt-2">データなし</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {# Right: Month selector + records #}
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-header bg-white py-3 px-4 border-0">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+          <span class="fw-semibold"><i class="bi bi-calendar3 me-2 text-primary"></i>月次記録</span>
+          <form method="get" class="d-flex align-items-center gap-2">
+            <select name="year" class="form-select form-select-sm" style="width:90px;" onchange="this.form.submit()">
+              {% for y in range(2024, 2028) %}
+              <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>{{ y }}年</option>
+              {% endfor %}
+            </select>
+            <select name="month" class="form-select form-select-sm" style="width:80px;" onchange="this.form.submit()">
+              {% for m in range(1, 13) %}
+              <option value="{{ m }}" {% if m == selected_month %}selected{% endif %}>{{ m }}月</option>
+              {% endfor %}
+            </select>
+          </form>
+        </div>
+        {# Quick month links #}
+        {% if available_months %}
+        <div class="mt-2 d-flex flex-wrap gap-1">
+          {% for (y, m) in available_months %}
+          <a href="/staff/{{ staff.id }}?year={{ y }}&month={{ m }}"
+             class="btn btn-xs btn-sm py-0 px-2 {% if y == selected_year and m == selected_month %}btn-primary{% else %}btn-outline-secondary{% endif %}"
+             style="font-size:0.78rem;">
+            {{ y }}/{{ '%02d' % m }}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="card-body p-4">
+        {# Survey comment for selected month #}
+        {% if selected_survey %}
+        <div class="mb-4">
+          <h6 class="fw-bold text-secondary mb-2"><i class="bi bi-chat-square-text me-1"></i>サーベイコメント（{{ selected_year }}/{{ '%02d' % selected_month }}）</h6>
+          <div class="p-3 rounded" style="background:#f8f9fa; font-size:0.9rem; white-space:pre-wrap;">{% if selected_survey.survey_comment %}{{ selected_survey.survey_comment }}{% else %}<span class="text-muted">コメントなし</span>{% endif %}</div>
+        </div>
+        {% endif %}
+
+        {# Interview record form #}
+        <h6 class="fw-bold text-secondary mb-3">
+          <i class="bi bi-pencil-square me-1"></i>面談記録 — {{ selected_year }}年{{ selected_month }}月
+          {% if selected_interview %}
+          <span class="badge bg-success ms-2" style="font-size:0.75rem;">記録済</span>
+          {% else %}
+          <span class="badge bg-secondary ms-2" style="font-size:0.75rem;">未記録</span>
+          {% endif %}
+        </h6>
+
+        <form method="post" action="/interviews/save">
+          <input type="hidden" name="staff_id" value="{{ staff.id }}">
+          <input type="hidden" name="year" value="{{ selected_year }}">
+          <input type="hidden" name="month" value="{{ selected_month }}">
+
+          {# 基本情報 #}
+          <div class="form-section mb-3">
+            <h6><i class="bi bi-info-circle me-1"></i>■ 基本情報</h6>
+            <div class="row g-2">
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">面談日</label>
+                <input type="date" name="interview_date" class="form-control form-control-sm"
+                  value="{{ selected_interview.interview_date.isoformat() if selected_interview and selected_interview.interview_date else '' }}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">面談者</label>
+                <input type="text" name="interviewer" class="form-control form-control-sm"
+                  value="{{ selected_interview.interviewer if selected_interview else '' }}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">面談時間</label>
+                <input type="text" name="duration" class="form-control form-control-sm" placeholder="例：30分"
+                  value="{{ selected_interview.duration if selected_interview else '' }}">
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold">面談場所</label>
+                <input type="text" name="location" class="form-control form-control-sm"
+                  value="{{ selected_interview.location if selected_interview else '' }}">
+              </div>
+            </div>
+          </div>
+
+          {# サーベイスコア #}
+          {% if selected_survey %}
+          <div class="form-section mb-3">
+            <h6><i class="bi bi-bar-chart me-1"></i>■ サーベイスコア（{{ selected_year }}/{{ '%02d' % selected_month }}）</h6>
+            <div class="d-flex gap-4">
+              <div class="text-center">
+                <div class="text-muted small">仕事満足度</div>
+                <span class="badge-score {% if selected_survey.score_work <= 2 %}score-{{ selected_survey.score_work }}{% elif selected_survey.score_work == 3 %}score-3{% else %}score-{{ selected_survey.score_work }}{% endif %}" style="width:40px;height:40px;">{{ selected_survey.score_work or '―' }}</span>
+                <div class="text-muted small">/ 5</div>
+              </div>
+              <div class="text-center">
+                <div class="text-muted small">人間関係</div>
+                <span class="badge-score {% if selected_survey.score_human <= 2 %}score-{{ selected_survey.score_human }}{% elif selected_survey.score_human == 3 %}score-3{% else %}score-{{ selected_survey.score_human }}{% endif %}" style="width:40px;height:40px;">{{ selected_survey.score_human or '―' }}</span>
+                <div class="text-muted small">/ 5</div>
+              </div>
+              <div class="text-center">
+                <div class="text-muted small">健康</div>
+                <span class="badge-score {% if selected_survey.score_health <= 2 %}score-{{ selected_survey.score_health }}{% elif selected_survey.score_health == 3 %}score-3{% else %}score-{{ selected_survey.score_health }}{% endif %}" style="width:40px;height:40px;">{{ selected_survey.score_health or '―' }}</span>
+                <div class="text-muted small">/ 5</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {# ヒアリング内容 #}
+          <div class="form-section mb-3">
+            <h6><i class="bi bi-chat-left-dots me-1"></i>■ ヒアリング内容</h6>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Q1. 仕事満足度について（業務内容・業務量・やりがいなど）</label>
+              <textarea name="q1_content" class="form-control form-control-sm" rows="4">{{ selected_interview.q1_content if selected_interview else '' }}</textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Q2. 人間関係について（上司・同僚・チームの雰囲気など）</label>
+              <textarea name="q2_content" class="form-control form-control-sm" rows="4">{{ selected_interview.q2_content if selected_interview else '' }}</textarea>
+            </div>
+            <div class="mb-0">
+              <label class="form-label small fw-semibold">Q3. 健康について（体調・睡眠・ストレスなど）</label>
+              <textarea name="q3_content" class="form-control form-control-sm" rows="4">{{ selected_interview.q3_content if selected_interview else '' }}</textarea>
+            </div>
+          </div>
+
+          {# 面談者所見 #}
+          <div class="form-section mb-4">
+            <h6><i class="bi bi-journal-text me-1"></i>■ 面談者所見</h6>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">総合所見</label>
+              <textarea name="overall_findings" class="form-control form-control-sm" rows="3">{{ selected_interview.overall_findings if selected_interview else '' }}</textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">今後の改善方針</label>
+              <textarea name="improvement_policy" class="form-control form-control-sm" rows="3">{{ selected_interview.improvement_policy if selected_interview else '' }}</textarea>
+            </div>
+            <div class="mb-0">
+              <label class="form-label small fw-semibold">その他特記事項</label>
+              <textarea name="other_notes" class="form-control form-control-sm" rows="3">{{ selected_interview.other_notes if selected_interview else '' }}</textarea>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="bi bi-floppy me-2"></i>保存
+            </button>
+            <a href="/staff/{{ staff.id }}" class="btn btn-outline-secondary">キャンセル</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if survey_records %}
+<script>
+const ctx = document.getElementById('scoreChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: {{ chart_labels | tojson }},
+    datasets: [
+      {
+        label: '仕事満足度',
+        data: {{ chart_work | tojson }},
+        borderColor: '#2d6a9f',
+        backgroundColor: 'rgba(45,106,159,0.1)',
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+      },
+      {
+        label: '人間関係',
+        data: {{ chart_human | tojson }},
+        borderColor: '#198754',
+        backgroundColor: 'rgba(25,135,84,0.1)',
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+      },
+      {
+        label: '健康',
+        data: {{ chart_health | tojson }},
+        borderColor: '#dc3545',
+        backgroundColor: 'rgba(220,53,69,0.1)',
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { min: 1, max: 5, ticks: { stepSize: 1 }, grid: { color: '#f0f0f0' } },
+      x: { grid: { color: '#f0f0f0' } }
+    },
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 } },
+    }
+  }
+});
+</script>
+{% endif %}
+{% endblock %}

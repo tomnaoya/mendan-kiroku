@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}スタッフ一覧 - 面談記録システム{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-people me-2 text-primary"></i>スタッフ一覧</h4>
+  <span class="text-muted small">{{ staff_data | length }}名表示中</span>
+</div>
+
+{# Department filter #}
+<div class="mb-3 d-flex flex-wrap gap-2">
+  <a href="/staff" class="btn btn-sm {% if not selected_dept %}btn-primary{% else %}btn-outline-secondary{% endif %}">
+    全員
+  </a>
+  {% for dept in departments %}
+  <a href="/staff?dept={{ dept | urlencode }}"
+     class="btn btn-sm {% if selected_dept == dept %}btn-primary{% else %}btn-outline-secondary{% endif %}">
+    {{ dept }}
+  </a>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead>
+        <tr style="background:#f0f4fa; font-size:0.85rem; color:#4a5568;">
+          <th class="ps-4 py-3">氏名</th>
+          <th>所属</th>
+          <th class="text-center">仕事満足度</th>
+          <th class="text-center">人間関係</th>
+          <th class="text-center">健康</th>
+          <th class="text-center">最低スコア</th>
+          <th class="text-center">面談記録</th>
+          <th class="text-center pe-4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in staff_data %}
+        {% set s = item.staff %}
+        {% set survey = item.latest_survey %}
+        {% set min_s = survey.min_score if survey else None %}
+        <tr class="{% if min_s and min_s <= 2 %}alert-row{% elif min_s and min_s == 3 %}caution-row{% endif %}">
+          <td class="ps-4 fw-semibold">{{ s.name }}</td>
+          <td><span class="dept-badge">{{ s.department }}</span></td>
+
+          {% macro score_badge(val) %}
+          <span class="badge-score {% if val == 1 or val == 2 %}score-{{ val }}{% elif val == 3 %}score-3{% elif val == 4 or val == 5 %}score-{{ val }}{% else %}score-none{% endif %}">
+            {% if val %}{{ val }}{% else %}―{% endif %}
+          </span>
+          {% endmacro %}
+
+          <td class="text-center">{{ score_badge(survey.score_work if survey else None) }}</td>
+          <td class="text-center">{{ score_badge(survey.score_human if survey else None) }}</td>
+          <td class="text-center">{{ score_badge(survey.score_health if survey else None) }}</td>
+          <td class="text-center">
+            {% if min_s %}
+            <span class="badge-score {% if min_s <= 2 %}score-{{ min_s }}{% elif min_s == 3 %}score-3{% else %}score-{{ min_s }}{% endif %} fw-bold">
+              {{ min_s }}
+            </span>
+            {% else %}
+            <span class="badge-score score-none">―</span>
+            {% endif %}
+          </td>
+          <td class="text-center">
+            {% if item.has_interview %}
+            <span class="interview-done"><i class="bi bi-check-circle-fill"></i></span>
+            {% else %}
+            <span class="text-muted"><i class="bi bi-dash-circle"></i></span>
+            {% endif %}
+          </td>
+          <td class="text-center pe-4">
+            <a href="/staff/{{ s.id }}" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-file-person me-1"></i>詳細
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-3 d-flex gap-4 text-muted small">
+  <span><span class="badge-score score-2" style="width:18px;height:18px;font-size:0.7rem;">2</span>&nbsp;要対応（スコア1〜2）</span>
+  <span><span class="badge-score score-3" style="width:18px;height:18px;font-size:0.7rem;">3</span>&nbsp;注意（スコア3）</span>
+  <span><span class="badge-score score-5" style="width:18px;height:18px;font-size:0.7rem;">5</span>&nbsp;良好（スコア4〜5）</span>
+</div>
+{% endblock %}
