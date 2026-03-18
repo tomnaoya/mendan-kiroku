@@ -1,21 +1,12 @@
 {% extends "base.html" %}
-
 {% block title %}スタッフ一覧 - 面談記録システム{% endblock %}
 
 {% block head %}
 <style>
-  .sticky-table-wrapper {
-    max-height: calc(100vh - 210px);
-    overflow-y: auto;
-    border-radius: 12px;
-  }
-  .sticky-table-wrapper thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #f0f4fa;
-    box-shadow: 0 1px 0 #dee2e6;
-  }
+  .sticky-table-wrapper { max-height: calc(100vh - 220px); overflow-y: auto; border-radius: 12px; }
+  .sticky-table-wrapper thead th { position: sticky; top: 0; z-index: 10; background: #f0f4fa; box-shadow: 0 1px 0 #dee2e6; }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { background: #e4eaf5 !important; }
 </style>
 {% endblock %}
 
@@ -28,7 +19,7 @@
 <div class="mb-3 d-flex flex-wrap gap-2">
   <a href="/staff" class="btn btn-sm {% if not selected_dept %}btn-primary{% else %}btn-outline-secondary{% endif %}">全員</a>
   {% for dept in departments %}
-  <a href="/staff?dept={{ dept | urlencode }}"
+  <a href="/staff?dept={{ dept | urlencode }}{% if sort_col %}&sort={{ sort_col }}&order={{ sort_order }}{% endif %}"
      class="btn btn-sm {% if selected_dept == dept %}btn-primary{% else %}btn-outline-secondary{% endif %}">
     {{ dept }}
   </a>
@@ -37,16 +28,29 @@
 
 <div class="card">
   <div class="sticky-table-wrapper">
-    <table class="table table-hover align-middle mb-0">
+    <table class="table table-hover align-middle mb-0" id="staffTable">
       <thead>
         <tr style="font-size:0.85rem; color:#4a5568;">
-          <th class="ps-4 py-3">氏名</th>
-          <th>所属</th>
-          <th class="text-center">仕事満足度</th>
-          <th class="text-center">人間関係</th>
-          <th class="text-center">健康</th>
-          <th class="text-center">最低スコア</th>
-          <th class="text-center">面談記録</th>
+          {% macro sort_th(col, label, cls="") %}
+          {% set next_order = "asc" if (sort_col == col and sort_order == "desc") else "desc" if (sort_col == col and sort_order == "asc") else "asc" %}
+          <th class="py-3 sortable {{ cls }}">
+            <a href="/staff?{% if selected_dept %}dept={{ selected_dept | urlencode }}&{% endif %}sort={{ col }}&order={{ next_order }}" class="sort-link">
+              {{ label }}
+              {% if sort_col == col %}
+                <i class="bi bi-arrow-{% if sort_order == 'asc' %}up{% else %}down{% endif %} sort-icon active ms-1"></i>
+              {% else %}
+                <i class="bi bi-arrow-down-up sort-icon ms-1"></i>
+              {% endif %}
+            </a>
+          </th>
+          {% endmacro %}
+          {{ sort_th("name", "氏名", "ps-4") }}
+          {{ sort_th("dept", "所属") }}
+          {{ sort_th("work", "仕事満足度", "text-center") }}
+          {{ sort_th("human", "人間関係", "text-center") }}
+          {{ sort_th("health", "健康", "text-center") }}
+          {{ sort_th("min", "最低スコア", "text-center") }}
+          {{ sort_th("interview", "面談記録", "text-center") }}
           <th class="text-center pe-4"></th>
         </tr>
       </thead>
@@ -67,16 +71,12 @@
           <td class="text-center">{{ score_badge(survey.score_human if survey else None) }}</td>
           <td class="text-center">{{ score_badge(survey.score_health if survey else None) }}</td>
           <td class="text-center">
-            {% if min_s %}
-            <span class="badge-score {% if min_s <= 2 %}score-{{ min_s }}{% elif min_s == 3 %}score-3{% else %}score-{{ min_s }}{% endif %} fw-bold">{{ min_s }}</span>
+            {% if min_s %}<span class="badge-score {% if min_s <= 2 %}score-{{ min_s }}{% elif min_s == 3 %}score-3{% else %}score-{{ min_s }}{% endif %} fw-bold">{{ min_s }}</span>
             {% else %}<span class="badge-score score-none">―</span>{% endif %}
           </td>
           <td class="text-center">
-            {% if item.has_interview %}
-            <span class="interview-done"><i class="bi bi-check-circle-fill"></i></span>
-            {% else %}
-            <span class="text-muted"><i class="bi bi-dash-circle"></i></span>
-            {% endif %}
+            {% if item.has_interview %}<span class="interview-done"><i class="bi bi-check-circle-fill"></i></span>
+            {% else %}<span class="text-muted"><i class="bi bi-dash-circle"></i></span>{% endif %}
           </td>
           <td class="text-center pe-4">
             <a href="/staff/{{ s.id }}" class="btn btn-sm btn-outline-primary">

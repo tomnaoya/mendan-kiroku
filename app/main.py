@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 from .database import engine
 from . import models
-from .routers import auth, staff, interviews
+from .routers import auth, staff, interviews, trends
 
 load_dotenv()
 
@@ -25,3 +25,4 @@ if os.path.isdir(static_dir):
 app.include_router(auth.router)
 app.include_router(staff.router)
 app.include_router(interviews.router)
+app.include_router(trends.router)

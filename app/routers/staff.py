@@ -18,16 +18,19 @@ def require_login(request: Request):
 
 
 @router.get("/staff", response_class=HTMLResponse)
-async def staff_list(request: Request, dept: str = "", db: Session = Depends(get_db)):
+async def staff_list(
+    request: Request,
+    dept: str = "",
+    sort: str = "",
+    order: str = "asc",
+    db: Session = Depends(get_db),
+):
     if not require_login(request):
         return RedirectResponse(url="/login", status_code=302)
 
-    staff_query = db.query(Staff).order_by(Staff.department, Staff.name)
-    all_staff = staff_query.all()
-
+    all_staff = db.query(Staff).all()
     departments = sorted(set(s.department for s in all_staff))
 
-    # Attach latest survey record to each staff
     staff_data = []
     for s in all_staff:
         if dept and s.department != dept:
@@ -45,11 +48,38 @@ async def staff_list(request: Request, dept: str = "", db: Session = Depends(get
             "has_interview": has_interview,
         })
 
+    # ソート
+    def sort_key(item):
+        s = item["staff"]
+        survey = item["latest_survey"]
+        NONE_VAL = 999 if order == "asc" else -999
+        if sort == "name":
+            return s.name
+        elif sort == "dept":
+            return s.department
+        elif sort == "work":
+            return survey.score_work if survey and survey.score_work is not None else NONE_VAL
+        elif sort == "human":
+            return survey.score_human if survey and survey.score_human is not None else NONE_VAL
+        elif sort == "health":
+            return survey.score_health if survey and survey.score_health is not None else NONE_VAL
+        elif sort == "min":
+            return survey.min_score if survey and survey.min_score is not None else NONE_VAL
+        elif sort == "interview":
+            return 0 if item["has_interview"] else 1
+        else:
+            return (s.department, s.name)
+
+    if sort:
+        staff_data.sort(key=sort_key, reverse=(order == "desc"))
+
     return templates.TemplateResponse("list.html", {
         "request": request,
         "staff_data": staff_data,
         "departments": departments,
         "selected_dept": dept,
+        "sort_col": sort,
+        "sort_order": order,
     })
 
 
@@ -58,7 +88,7 @@ async def staff_detail(
     request: Request,
     staff_id: int,
     year: int = 2026,
-    month: int = 2,
+    month: int = 3,
     db: Session = Depends(get_db),
 ):
     if not require_login(request):
@@ -75,27 +105,23 @@ async def staff_detail(
         .all()
     )
 
-    # Chart data
     chart_labels = [f"{r.year}/{r.month:02d}" for r in survey_records]
     chart_work = [r.score_work for r in survey_records]
     chart_human = [r.score_human for r in survey_records]
     chart_health = [r.score_health for r in survey_records]
 
-    # Selected month survey
     selected_survey = (
         db.query(SurveyRecord)
         .filter(SurveyRecord.staff_id == staff_id, SurveyRecord.year == year, SurveyRecord.month == month)
         .first()
     )
 
-    # Selected month interview
     selected_interview = (
         db.query(InterviewRecord)
         .filter(InterviewRecord.staff_id == staff_id, InterviewRecord.year == year, InterviewRecord.month == month)
         .first()
     )
 
-    # Available months (union of survey and interview months)
     survey_months = [(r.year, r.month) for r in survey_records]
     interview_months = [
         (r.year, r.month)

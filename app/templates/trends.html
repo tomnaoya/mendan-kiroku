@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block title %}傾向分析 - 面談記録システム{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  .nav-tabs .nav-link { color: #4a5568; font-weight: 600; }
+  .nav-tabs .nav-link.active { color: #1a3a5c; border-bottom: 3px solid #2d6a9f; background: none; }
+  .score-cell { font-weight: 700; }
+  .score-high { color: #0f5132; }
+  .score-mid { color: #664d03; }
+  .score-low { color: #842029; }
+  .chart-container { position: relative; width: 100%; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i>傾向分析</h4>
+</div>
+
+<ul class="nav nav-tabs mb-4" id="trendsTab">
+  <li class="nav-item">
+    <button class="nav-link active px-4" data-bs-toggle="tab" data-bs-target="#pane-overall">
+      <i class="bi bi-globe me-1"></i>全体
+    </button>
+  </li>
+  {% for dept in departments %}
+  <li class="nav-item">
+    <button class="nav-link px-3" data-bs-toggle="tab" data-bs-target="#pane-{{ loop.index }}">
+      {{ dept }}
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
+<div class="tab-content">
+
+  {# ── 全体タブ ── #}
+  <div class="tab-pane fade show active" id="pane-overall">
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+            <span class="fw-semibold">全体平均スコア推移</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="chart-container">
+              <canvas id="chart-overall" style="max-height:360px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-0 text-center" style="font-size:0.88rem;">
+                <thead style="background:#f0f4fa;">
+                  <tr>
+                    <th class="text-start ps-4 py-3">月</th>
+                    <th>回答数</th>
+                    <th>仕事満足度</th>
+                    <th>人間関係</th>
+                    <th>健康</th>
+                    <th>合計平均</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for r in overall | reverse %}
+                  <tr>
+                    <td class="text-start ps-4 fw-semibold">{{ r.label }}</td>
+                    <td class="text-muted">{{ r.count }}名</td>
+                    {% macro score_td(val) %}
+                    <td class="score-cell {% if val and val >= 4 %}score-high{% elif val and val >= 3 %}score-mid{% elif val %}score-low{% endif %}">
+                      {{ "%.2f"|format(val) if val else "―" }}
+                    </td>
+                    {% endmacro %}
+                    {{ score_td(r.work) }}
+                    {{ score_td(r.human) }}
+                    {{ score_td(r.health) }}
+                    {{ score_td(r.total) }}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ── 院別タブ ── #}
+  {% for dept in departments %}
+  {% set rows = dept_data[dept] %}
+  <div class="tab-pane fade" id="pane-{{ loop.index }}">
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+            <span class="fw-semibold">{{ dept }} — 平均スコア推移</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="chart-container">
+              <canvas id="chart-dept-{{ loop.index }}" style="max-height:360px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-0 text-center" style="font-size:0.88rem;">
+                <thead style="background:#f0f4fa;">
+                  <tr>
+                    <th class="text-start ps-4 py-3">月</th>
+                    <th>回答数</th>
+                    <th>仕事満足度</th>
+                    <th>人間関係</th>
+                    <th>健康</th>
+                    <th>合計平均</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for r in rows | reverse %}
+                  <tr>
+                    <td class="text-start ps-4 fw-semibold">{{ r.label }}</td>
+                    <td class="text-muted">{{ r.count }}名</td>
+                    {% macro score_td2(val) %}
+                    <td class="score-cell {% if val and val >= 4 %}score-high{% elif val and val >= 3 %}score-mid{% elif val %}score-low{% endif %}">
+                      {{ "%.2f"|format(val) if val else "―" }}
+                    </td>
+                    {% endmacro %}
+                    {{ score_td2(r.work) }}
+                    {{ score_td2(r.human) }}
+                    {{ score_td2(r.health) }}
+                    {{ score_td2(r.total) }}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const CHART_DEFAULTS = {
+  type: 'line',
+  options: {
+    responsive: true,
+    interaction: { mode: 'index', intersect: false },
+    scales: {
+      y: {
+        min: 1, max: 5,
+        ticks: { stepSize: 0.5 },
+        grid: { color: '#f0f0f0' }
+      },
+      x: { grid: { color: '#f0f0f0' } }
+    },
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 14, padding: 20, usePointStyle: true } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}` } }
+    }
+  }
+};
+
+function makeDatasets(work, human, health, total) {
+  return [
+    { label: '仕事満足度', data: work, borderColor: '#2d6a9f', backgroundColor: 'rgba(45,106,159,0.1)', tension: 0.3, pointRadius: 6, pointStyle: 'circle', borderWidth: 2.5, pointBackgroundColor: '#2d6a9f' },
+    { label: '人間関係',   data: human,  borderColor: '#198754', backgroundColor: 'rgba(25,135,84,0.1)',  tension: 0.3, pointRadius: 6, pointStyle: 'rectRot', borderDash: [6,3], borderWidth: 2.5, pointBackgroundColor: '#198754' },
+    { label: '健康',       data: health, borderColor: '#dc3545', backgroundColor: 'rgba(220,53,69,0.1)', tension: 0.3, pointRadius: 6, pointStyle: 'triangle', borderDash: [2,4], borderWidth: 2.5, pointBackgroundColor: '#dc3545' },
+    { label: '合計平均',   data: total,  borderColor: '#6f42c1', backgroundColor: 'rgba(111,66,193,0.08)', tension: 0.3, pointRadius: 6, pointStyle: 'star', borderWidth: 3, pointBackgroundColor: '#6f42c1' },
+  ];
+}
+
+const labels = {{ month_labels | tojson }};
+
+// 全体
+const overallData = {{ overall | tojson }};
+new Chart(document.getElementById('chart-overall'), {
+  ...CHART_DEFAULTS,
+  data: {
+    labels,
+    datasets: makeDatasets(
+      overallData.map(r => r.work),
+      overallData.map(r => r.human),
+      overallData.map(r => r.health),
+      overallData.map(r => r.total)
+    )
+  }
+});
+
+// 院別
+const deptData = {{ dept_data | tojson }};
+{% for dept in departments %}
+(function() {
+  const rows = deptData[{{ dept | tojson }}];
+  new Chart(document.getElementById('chart-dept-{{ loop.index }}'), {
+    ...CHART_DEFAULTS,
+    data: {
+      labels,
+      datasets: makeDatasets(
+        rows.map(r => r.work),
+        rows.map(r => r.human),
+        rows.map(r => r.health),
+        rows.map(r => r.total)
+      )
+    }
+  });
+})();
+{% endfor %}
+</script>
+{% endblock %}
