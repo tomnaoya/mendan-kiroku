@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: pulse-survey-app
+    name: mendan-kiroku
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt && python init_db.py
@@ -8,7 +8,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: pulse-survey-db
+          name: mendan-kiroku-db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
@@ -18,7 +18,7 @@ services:
         value: admin
 
 databases:
-  - name: pulse-survey-db
-    databaseName: pulse_survey
-    user: pulse_survey
+  - name: mendan-kiroku-db
+    databaseName: mendan_kiroku
+    user: mendan_kiroku
     plan: free
