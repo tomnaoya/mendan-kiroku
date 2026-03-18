@@ -1,24 +1,20 @@
 services:
   - type: web
-    name: mendan-kiroku
+    name: mendan-kiroku-app
     env: python
-    plan: free
-    buildCommand: pip install -r requirements.txt && python init_db.py
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python init_db.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    disk:
+      name: mendan-kiroku-disk
+      mountPath: /var/data
+      sizeGB: 1
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: mendan-kiroku-db
-          property: connectionString
+        value: sqlite:////var/data/mendan.db
       - key: SECRET_KEY
         generateValue: true
       - key: ADMIN_ID
         value: admin
       - key: ADMIN_PW
         value: admin
-
-databases:
-  - name: mendan-kiroku-db
-    databaseName: mendan_kiroku
-    user: mendan_kiroku
-    plan: free
