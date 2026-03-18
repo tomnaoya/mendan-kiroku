@@ -652,5 +652,547 @@
       "interview_date": "2026-2-22",
       "content": "人が少なかったり忙しい時期だったので、仕事量と人員的なところがバランスが取れてなくて\nインフルエンザが早めに流行入ったのとワクチンが\n人が少なかったりして、一診にひとりつけるかつけないかくらいで\n柏院はまわさないと患者さんが外に並んだりするから\n先生について予備入れして検査して検査結果は看護師がお伝えして\n亀ケ澤さんが一人立ちしていない。一人で置くのには不安なところがある。\nまるまる新人ではないし、佐藤みおさんと同じくらいの経験は持っているはずだが、難しい。個人の資質。\nワクチンとかでイレギュラーなやつがあって、引っかかると調べたりとか立ち止まったりすることができるが、引っかからないまま普通の流れで行ってしまったりしてしまう。違和感に気づかない。普通のルーチンだったらできるが、\nインシデントやアクシデントに繋がるリスクを感じる。\nダブルチェックが本来は看護師がふたりいてできればよいが、それができない状態があったので、人が充足してくれば良いのかなとは思う。\n加藤さんが産休はいってて、戻ったときに人があふれてしまうから、人が入れられないと言われていた。\nまだ先だと思うが、加藤さんが戻ってくるとして日中の人はあふれるとは思うが、時短勤務になると思うので、\n佐藤みおさんが時短勤務なので夕方から人がいないということになる。\n日中は人が潤っているが、夕方以降に足りないという状況。"
     }
-  }
+  },
+  "march_surveys": [
+    {
+      "name": "芦萱 裕子",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-16"
+    },
+    {
+      "name": "関根 真彩",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-15"
+    },
+    {
+      "name": "坂下 莉菜",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 3,
+      "survey_comment": "前回より改善点が見られないため",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "中田 ひとみ",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "吉田 舞",
+      "department": "01 有明院",
+      "score_work": 2,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "柴田 あかり",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "花粉症やインフルエンザの流行で月初まで多忙ですが、最近落ち着いてきました。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "杉田 和也",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "里田 恵梨子",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "まだ入ったばかりでよくわかりません",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "丸山 彩",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "前回お話を個別に聞いていただき、お伝えしたいことは全てお伝えできております。部門間のコミュニケーションの問題はありますが、結局お互いの歩み寄りが大事だと思いますので、声掛けは意識してこまめに行うことで少しでも改善できればと思っております。体調面は、仕事によるものではないので、お気になさらずでお願いします。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "高田 彩",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "伏見 怜菜",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "新居 春菜",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "こちらに書くことではないと思うのですが、一点失礼します。\n新規院についてですが、CUCの露木さんから直接お誘いいただいたのになかなか情報が降りてこず気にかかります。当初は6月から新規院で勤務という形で伺っていました。パートの契約更新が7月までとなっており話を詳しく聞くと6月半ばから新規院で勤務の可能性があるとのことでした。こちらから新規院について尋ねないと情報が降りてこない、新規院がすぐに開院できるかも不明となればこちらの生活設計も変わってしまうので、開示できる内容でもいいのでその都度連絡していただきたいです。\n最後になりますが、こちらの件での面談は不要です。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "野沢 仁成",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "普段の会話や面談の中で、一定の評価を現場から頂けていると実感でき、今後も頑張っていこうと感じられた",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "河野 航",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "久田 由紀枝",
+      "department": "02 豊洲院",
+      "score_work": 2,
+      "score_human": 4,
+      "score_health": 2,
+      "survey_comment": "自分で抱え過ぎてしまう事、部下はなんでも確認してからではないと行ってくれない方がありそちらの改善に今試行錯誤しております。健康面はリニューアル前後より責任を持って行いたいと思うあまり精神面、肉体面に疲れやストレスが、多い。体調不良が表れはじめ、時には勤務が難しいと思いながら、無理してはたらいていることもある。",
+      "response_date": "2026-03-15"
+    },
+    {
+      "name": "岩﨑 美久",
+      "department": "02 豊洲院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "山田 歩夢",
+      "department": "02 豊洲院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "横山 由美",
+      "department": "02 豊洲院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "こなしてもこなしても、状態が落ち着かない。仕方のないことだが、やっとの休暇も完全フリーで休めない。\n休みの日も仕事の対応が多い。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "眞山 果苗",
+      "department": "02 豊洲院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 1,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "白樫 その子",
+      "department": "02 豊洲院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "宮澤 依子",
+      "department": "02 豊洲院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "近藤 梨香",
+      "department": "03 勝どき院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "異動に不安を感じます",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "田村 絵里子",
+      "department": "03 勝どき院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 1,
+      "survey_comment": "院長の知識と技術の未熟さに信用できない。\n事務長の理不尽さや機嫌の起伏についていけない。\n院長と事務長の不仲により連携がとれない。\n周りに相談できる窓口がない、相談しても解決に協力が得られない。",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "関 衛順",
+      "department": "03 勝どき院",
+      "score_work": 2,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "田坂 桜",
+      "department": "03 勝どき院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "前回のアンケートと同様の理由です。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "江津 志保",
+      "department": "03 勝どき院",
+      "score_work": 4,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "自分の周りに対しては不満はございません。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "齊藤 香菜",
+      "department": "04 田町芝浦院",
+      "score_work": 1,
+      "score_human": 1,
+      "score_health": 1,
+      "survey_comment": "先日いわゆるカスハラ案件があり、最終的に「こちらにも誤解させる言動があった。患者様にも目に見えない都合がある」という着地になり、元々大事にするつもりはなかった自分にとっては激しくストレスの原因となった。事務長が何を伝えたかった不明だが、こちらはそう受け取った。事務長は何か有事があったとき、うちのスタッフはそんなことしないとまずは信じてはくれていないのだろうなと感じた。先日事務に欠員が出て他院からヘルプにきてもらったときも、ヘルプにきてもらっている人を二階の事務長のいる部屋に呼んでお話しされていて、ヘルプに呼んだ意味が理解されていないのだろうと思った。看護師とは積極的に話にいくが、事務とは話さない。事務が忙しいときに話しにこられても迷惑なだけだし、基本的に業務時間内で事務長に話しに行く隙もない。事務長は話しに来てくださいと言うが、今後事務メンバーも少なくなるので余計に難しくなるのだろう。リーダーに興味があるといったときも、嬉しいですとは言っていたが具体的な話は出ず、まずは業務を覚えてからという着地で、これはもう3年とかのスパンなのかなと思っていて、なんかもうどうでもいいかなというところもあり、まぁでも会社なんてみんなどこもそんなもんだからと俯瞰してみれば冷静になれるし、もう誰も信じなければ済む問題ではあるのだった。冒頭の話しに戻ると、私自身はカスハラ案件に上げるほどのことではないと思ったが、そのときいた先輩と他の患者様が心配されて話が事務長にいき、そこまで大事にしなくていいと伝えていたのに専門家に相談という流れになり、こんなことになるなら、もう二度と何があってもカスハラ案件には上げるなと殴ってでも止めておこうと心に誓ったのである。",
+      "response_date": "2026-03-15"
+    },
+    {
+      "name": "清水 芹香",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "若井 南奈",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "石原 怜奈",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "飯島 愛美",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "佐藤 絢耶",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "門脇 弘子",
+      "department": "04 田町芝浦院",
+      "score_work": 2,
+      "score_human": 2,
+      "score_health": 4,
+      "survey_comment": "時間に余裕がなくあと5分あるから働いてと言われる。自分が正しいと思い込んでいる人が多く医師より主張することが多い。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "大辻 麻依子",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "事務のメンバーの関係は良好だと思います。\n看護師については、新入職者が多くリーダーも当院のルールに精通していないためか、従来の運用が十分に徹底されていないと感じる場面が多々あります。\n例えば、処置終了時のインカム連絡がないため、会計待ちの患者様の状況が把握できず、結果として連日お待たせする事態を招いています。また、会計不要のお子様に対しても、診察終了後に帰宅を促すオペレーション漏れが多く、待合で待たれている方に事務スタッフがその都度誘導を行うという余計な業務が発生しています。\n診察後処方箋が受付に届くまでも遅く、都度所在を確認しなければならない状況にも疲れを感じます。\nスタッフが入れ替わったばかりで慣れが必要な時期だとは理解していますが、以前はこうだったということを知らない方しか看護師にはおらず、正解が示されないまま業務が進んでいるため今後の改善が見通せません。\nベテランでリーダーの清水さんや岩井さんも、以前とのギャップに強いストレスを感じているように見受けられます。\nまた、リーダー陣から業務改善についてミーティングなどをしても、なかなか事務と助手の意見が通らないとも伺っています。\n岩井さんについては田町に来たいとおっしゃってくださっていたのに、最近では看護師との関係に疲れたというお話が多くなっていて本当に申し訳なく感じます。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "植村 明音",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 2,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "岡田 愛弓",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "植松 真代",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "患者様アンケートが開始となり、みんな積極的に声をかけてくれています。\nみなさんに感謝しております。",
+      "response_date": "2026-03-16"
+    },
+    {
+      "name": "山野 彩香",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "瀬戸 祐也",
+      "department": "06 管理部",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "鮫島 陽子",
+      "department": "06 管理部",
+      "score_work": 2,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "井元 麻美",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "古川 紫緒里",
+      "department": "06 管理部",
+      "score_work": 2,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "冨田 直哉",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "岸田 琴瑛",
+      "department": "06 管理部",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "松浦 里穂",
+      "department": "07ひふか院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "ホームページへのスタッフの顔写真とイニシャル掲載についてご意見があります。\n研修期間から社員契約更新時の書面にサインする際、事務長やリーダーの前で記入する形で同意を求められ、その場の雰囲気や「みんな書いている」という言葉もあり、圧迫を感じた状態でサインしました。\n\n私は以前の職場でストーカー行為の被害にあった経験があり、防犯やプライバシーの観点から顔写真の掲載には強い不安があります。そのため掲載は希望していませんでした。\n\nまた、別の方から「写真掲載を承諾しない場合は減給になる」と聞き、実際に減給されている方がいるという話もあり、減給を避けるために本意ではないまま同意した形になりました。一方で、事務長との個別の話し合いで、掲載しなくても給与は変わらない対応をされている方がいるとも聞いています。\n\n掲載していなくても同じ給与で対応されている方がいるのであれば、対応に差があることに疑問を感じています。私は以前から掲載したくない旨を何度かお伝えしていますが、特に改善がない状況です。\n\n防犯・プライバシーの観点からも、顔写真掲載は希望制にするなど、スタッフの意思を尊重した運用にしていただけるようご検討いただきたいです。",
+      "response_date": "2026-03-16"
+    },
+    {
+      "name": "柴田 浩美",
+      "department": "07ひふか院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-03-15"
+    },
+    {
+      "name": "渡部 真里亜",
+      "department": "07ひふか院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "髙崎 茜",
+      "department": "07ひふか院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "齊藤 昭子",
+      "department": "07ひふか院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "矢富 良寛",
+      "department": "07ひふか院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "外国人患者とクレーマー患者が多くて日々ストレスは感じています。",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "佐伯 理沙",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 2,
+      "survey_comment": "希望休・有給を使わずに休み希望を直接シフト作成者に伝え休みを反映させたり合わせていたりするのは不公平に感じる時があります。",
+      "response_date": "2026-03-16"
+    },
+    {
+      "name": "飯塚 裕子",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-15"
+    },
+    {
+      "name": "山下 みゆき",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "佐藤 美緒",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-14"
+    },
+    {
+      "name": "畠中 聡美",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "金澤 愛",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "澁谷 聖美",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "磯 麻美",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "岸本 磨耶",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    },
+    {
+      "name": "石川 携",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-03-13"
+    }
+  ]
 }

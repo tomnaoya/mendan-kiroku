@@ -6,7 +6,7 @@
 import json
 import sys
 import os
-from datetime import date
+from datetime import date, datetime
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -18,9 +18,8 @@ def parse_date(s):
     if not s:
         return None
     s = s.strip()
-    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%Y-%m-%d"):
+    for fmt in ("%Y-%m-%d", "%Y/%m/%d"):
         try:
-            from datetime import datetime
             return datetime.strptime(s, fmt).date()
         except ValueError:
             continue
@@ -33,7 +32,6 @@ def seed():
 
     db = SessionLocal()
     try:
-        # Skip if already seeded
         if db.query(Staff).count() > 0:
             print("Data already seeded. Skipping.")
             return
@@ -43,13 +41,16 @@ def seed():
 
         print(f"Seeding {len(data['staff'])} staff members...")
 
+        # 3月データをname→recordのマップに
+        march_map = {r['name']: r for r in data.get('march_surveys', [])}
+
         for item in data["staff"]:
             staff = Staff(name=item["name"], department=item["department"])
             db.add(staff)
             db.flush()
 
-            # Survey record for 2026/02
-            survey = SurveyRecord(
+            # 2月サーベイ
+            survey_feb = SurveyRecord(
                 staff_id=staff.id,
                 year=2026,
                 month=2,
@@ -59,9 +60,24 @@ def seed():
                 survey_comment=item.get("survey_comment", ""),
                 response_date=parse_date(item.get("response_date", "")),
             )
-            db.add(survey)
+            db.add(survey_feb)
 
-            # Interview record if available
+            # 3月サーベイ（存在する人のみ）
+            march = march_map.get(item["name"])
+            if march:
+                survey_mar = SurveyRecord(
+                    staff_id=staff.id,
+                    year=2026,
+                    month=3,
+                    score_work=march.get("score_work"),
+                    score_human=march.get("score_human"),
+                    score_health=march.get("score_health"),
+                    survey_comment=march.get("survey_comment", ""),
+                    response_date=parse_date(march.get("response_date", "")),
+                )
+                db.add(survey_mar)
+
+            # 2月面談記録
             interview_data = data["interviews"].get(item["name"])
             if interview_data and interview_data.get("content"):
                 interview = InterviewRecord(
