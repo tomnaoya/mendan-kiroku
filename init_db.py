@@ -2,7 +2,7 @@
 DB初期化＆シードスクリプト
 - テーブル作成
 - スタッフ・2月サーベイ・面談記録の初期投入（初回のみ）
-- 3月サーベイは常に差分追加（既存レコードはスキップ）
+- 3月サーベイは常に差分追加（スタッフ未登録の場合も自動追加）
 """
 import json
 import os
@@ -24,6 +24,16 @@ def parse_date(s):
         except ValueError:
             continue
     return None
+
+
+def get_or_create_staff(db, name, department):
+    staff = db.query(Staff).filter(Staff.name == name).first()
+    if not staff:
+        staff = Staff(name=name, department=department)
+        db.add(staff)
+        db.flush()
+        print(f"  新規スタッフ追加: {name} ({department})")
+    return staff
 
 
 def seed():
@@ -67,17 +77,18 @@ def seed():
         else:
             print("Staff already exists. Skipping initial seed.")
 
-        # ── 毎回実行: 3月サーベイの差分追加 ──
+        # ── 毎回実行: 3月サーベイの差分追加（スタッフ未登録も自動作成）──
         added = 0
         for name, march in march_map.items():
-            staff = db.query(Staff).filter(Staff.name == name).first()
-            if not staff:
-                continue
+            # スタッフが存在しない場合は新規作成
+            staff = get_or_create_staff(db, name, march.get("department", ""))
+
             exists = db.query(SurveyRecord).filter(
                 SurveyRecord.staff_id == staff.id,
                 SurveyRecord.year == 2026,
                 SurveyRecord.month == 3,
             ).first()
+
             if not exists:
                 db.add(SurveyRecord(
                     staff_id=staff.id, year=2026, month=3,
