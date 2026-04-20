@@ -1230,5 +1230,403 @@
       "survey_comment": "",
       "response_date": "2026-03-23"
     }
+  ],
+  "april_surveys": [
+    {
+      "name": "若井 南奈",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "畠中 聡美",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "田坂 桜",
+      "department": "03 勝どき院",
+      "score_work": 2,
+      "score_human": 1,
+      "score_health": 2,
+      "survey_comment": "事務長の機嫌を伺いながらの業務にスタッフたちが大変疲弊している。",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "熊田 麻衣子",
+      "department": "06 管理部",
+      "score_work": 2,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "荒川 理乃香",
+      "department": "03 勝どき院",
+      "score_work": 1,
+      "score_human": 1,
+      "score_health": 2,
+      "survey_comment": "面談日を4/20にお願いします。",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "門脇 弘子",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 3,
+      "survey_comment": "良い人は、気配りあり、やさしい。",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "飯島 愛美",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "竹原 広基",
+      "department": "02 豊洲院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "佐藤 絢耶",
+      "department": "04 田町芝浦院",
+      "score_work": 2,
+      "score_human": 2,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "岸本 磨耶",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "里田 恵梨子",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "石山 彩夏",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "岩﨑 美久",
+      "department": "02 豊洲院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "白樫 その子",
+      "department": "02 豊洲院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "澁谷 聖美",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "金澤 愛",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "清水 芹香",
+      "department": "04 田町芝浦院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "高橋 佳代",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "髙崎 茜",
+      "department": "07ひふか院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "金澤 玲亜",
+      "department": "01 有明院",
+      "score_work": 5,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "磯 麻美",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "渡邉 未知子",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "井元 麻美",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "岸田 琴瑛",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "鮫島 陽子",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "齊藤 昭子",
+      "department": "07ひふか院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 4,
+      "survey_comment": "長期で出勤できない方がいることで、（個人的には抱いていないが）チーム内に嫌悪感を抱く方がいるのが、なんとかならないかなぁ、士気を高く保ちたいなぁ、と考えています。",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "石原 怜菜",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "植村 明音",
+      "department": "04 田町芝浦院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "浅井 大介",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "石川 携",
+      "department": "09 イオン柏院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "山野 彩香",
+      "department": "06 管理部",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "古川 紫緒里",
+      "department": "06 管理部",
+      "score_work": 2,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "柏院勤務が決まった理由を知りたいです。",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "土井 琉音",
+      "department": "02 豊洲院",
+      "score_work": 5,
+      "score_human": 5,
+      "score_health": 5,
+      "survey_comment": "",
+      "response_date": "2026-04-17"
+    },
+    {
+      "name": "佐藤 千寿子",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 5,
+      "score_health": 2,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "飯塚 裕子",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 5,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "横山 由美",
+      "department": "02 豊洲院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 4,
+      "survey_comment": "職種を超えての人間関係がなかなか良い方向にならない。普通のやりとりができないなど、非常に難しい集団である…。",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "齊藤 香菜",
+      "department": "04 田町芝浦院",
+      "score_work": 1,
+      "score_human": 1,
+      "score_health": 2,
+      "survey_comment": "若いからって言われたらババアでごめんねっってしか言えないよね",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "柴田 浩美",
+      "department": "07ひふか院",
+      "score_work": 2,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "佐伯 理沙",
+      "department": "09 イオン柏院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "八重樫 未来",
+      "department": "02 豊洲院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "丸山 彩",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 3,
+      "score_health": 2,
+      "survey_comment": "常勤医、非常勤医が少しずつ変わり、そこに抱えていたストレスがかなり軽減されています。チーム間のコミュニケーションも、意識して話をすることでわずかながら改善されている気がします。",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "長岡 真実",
+      "department": "01 有明院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 4,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "芦萱 裕子",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-18"
+    },
+    {
+      "name": "田村 絵里子",
+      "department": "03 勝どき院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "以前からご相談させていただいておりますことなのですが、状況はかなり悪化しております。連日機嫌も悪く、相談どころか声をかけることもスタッフ一同できません。\n今月事務長の豊洲院へのヘルプが決まり、少し距離を置けると皆んなで安心しておりましたが、そのヘルプも全て無くなりました。状況を変えてくださらないことはわかりましたので、退職を考えております。\n面談は事務長と日程調整しなければならないため不要です。",
+      "response_date": "2026-04-19"
+    }
   ]
 }

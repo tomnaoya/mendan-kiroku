@@ -2,7 +2,7 @@
 DB初期化＆シードスクリプト
 - テーブル作成
 - スタッフ・2月サーベイ・面談記録の初期投入（初回のみ）
-- 3月サーベイは常に差分追加（スタッフ未登録の場合も自動追加）
+- 3月・4月サーベイは常に差分追加（スタッフ未登録の場合も自動追加）
 """
 import json
 import os
@@ -10,7 +10,6 @@ import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(__file__))
-
 from app.database import engine, SessionLocal
 from app.models import Base, Staff, SurveyRecord, InterviewRecord
 
@@ -36,6 +35,31 @@ def get_or_create_staff(db, name, department):
     return staff
 
 
+def upsert_monthly_survey(db, survey_map, year, month, label):
+    """月次サーベイの差分追加（共通処理）"""
+    added = 0
+    for name, rec in survey_map.items():
+        staff = get_or_create_staff(db, name, rec.get("department", ""))
+
+        exists = db.query(SurveyRecord).filter(
+            SurveyRecord.staff_id == staff.id,
+            SurveyRecord.year == year,
+            SurveyRecord.month == month,
+        ).first()
+        if not exists:
+            db.add(SurveyRecord(
+                staff_id=staff.id, year=year, month=month,
+                score_work=rec.get("score_work"),
+                score_human=rec.get("score_human"),
+                score_health=rec.get("score_health"),
+                survey_comment=rec.get("survey_comment", ""),
+                response_date=parse_date(rec.get("response_date", "")),
+            ))
+            added += 1
+    db.commit()
+    print(f"{label} survey: {added} records added.")
+
+
 def seed():
     print("Creating tables...")
     Base.metadata.create_all(bind=engine)
@@ -46,6 +70,7 @@ def seed():
             data = json.load(f)
 
         march_map = {r["name"]: r for r in data.get("march_surveys", [])}
+        april_map = {r["name"]: r for r in data.get("april_surveys", [])}
 
         # ── 初回のみ: スタッフ・2月データ投入 ──
         if db.query(Staff).count() == 0:
@@ -71,37 +96,14 @@ def seed():
                         interview_date=parse_date(interview_data.get("interview_date", "")),
                         q1_content=interview_data.get("content", ""),
                     ))
-
             db.commit()
             print("Initial seed complete.")
         else:
             print("Staff already exists. Skipping initial seed.")
 
-        # ── 毎回実行: 3月サーベイの差分追加（スタッフ未登録も自動作成）──
-        added = 0
-        for name, march in march_map.items():
-            # スタッフが存在しない場合は新規作成
-            staff = get_or_create_staff(db, name, march.get("department", ""))
-
-            exists = db.query(SurveyRecord).filter(
-                SurveyRecord.staff_id == staff.id,
-                SurveyRecord.year == 2026,
-                SurveyRecord.month == 3,
-            ).first()
-
-            if not exists:
-                db.add(SurveyRecord(
-                    staff_id=staff.id, year=2026, month=3,
-                    score_work=march.get("score_work"),
-                    score_human=march.get("score_human"),
-                    score_health=march.get("score_health"),
-                    survey_comment=march.get("survey_comment", ""),
-                    response_date=parse_date(march.get("response_date", "")),
-                ))
-                added += 1
-
-        db.commit()
-        print(f"March survey: {added} records added.")
+        # ── 毎回実行: 月次サーベイの差分追加 ──
+        upsert_monthly_survey(db, march_map, 2026, 3, "March")
+        upsert_monthly_survey(db, april_map, 2026, 4, "April")
 
     except Exception as e:
         db.rollback()
