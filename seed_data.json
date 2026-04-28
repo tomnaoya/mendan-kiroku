@@ -1627,6 +1627,42 @@
       "score_health": 2,
       "survey_comment": "以前からご相談させていただいておりますことなのですが、状況はかなり悪化しております。連日機嫌も悪く、相談どころか声をかけることもスタッフ一同できません。\n今月事務長の豊洲院へのヘルプが決まり、少し距離を置けると皆んなで安心しておりましたが、そのヘルプも全て無くなりました。状況を変えてくださらないことはわかりましたので、退職を考えております。\n面談は事務長と日程調整しなければならないため不要です。",
       "response_date": "2026-04-19"
+    },
+    {
+      "name": "若井 絵里",
+      "department": "09 イオン柏院",
+      "score_work": 4,
+      "score_human": 4,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-23"
+    },
+    {
+      "name": "高田 彩",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-22"
+    },
+    {
+      "name": "渡部 真里亜",
+      "department": "07ひふか院",
+      "score_work": 3,
+      "score_human": 2,
+      "score_health": 2,
+      "survey_comment": "欠員が長期化しており、個々の負担が増えたまま新しい人材確保がされておらず、負担が重くなっている。",
+      "response_date": "2026-04-22"
+    },
+    {
+      "name": "髙畑 咲絵",
+      "department": "01 有明院",
+      "score_work": 3,
+      "score_human": 3,
+      "score_health": 3,
+      "survey_comment": "",
+      "response_date": "2026-04-21"
     }
   ]
 }
